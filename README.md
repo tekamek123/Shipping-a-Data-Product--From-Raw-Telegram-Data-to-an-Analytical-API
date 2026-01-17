@@ -125,9 +125,8 @@ medical-telegram-warehouse/
 
 ## Getting Started
 
-*Instructions will be added as the project progresses.*
+_Instructions will be added as the project progresses._
 
 ## License
 
-*To be determined*
-
+_To be determined_
