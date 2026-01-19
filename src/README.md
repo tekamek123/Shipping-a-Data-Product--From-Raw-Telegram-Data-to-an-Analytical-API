@@ -13,6 +13,7 @@
 ### 2. Configure Environment Variables
 
 1. Copy `.env.example` to `.env`:
+
    ```bash
    cp .env.example .env
    ```
@@ -52,4 +53,3 @@ The first time you run it, Telegram will send you a verification code. Enter it 
 - Comprehensive logging
 - Handles rate limiting and errors gracefully
 - Avoids duplicate messages when re-running
-
