@@ -1,0 +1,60 @@
+version: 2
+
+sources:
+  - name: raw
+    schema: raw
+    description: "Raw Telegram data loaded from JSON scraper output."
+    tables:
+      - name: telegram_messages
+        description: "Raw messages from Telegram channels with media info."
+        columns:
+          - name: message_id
+            description: "Telegram message id."
+          - name: channel_name
+            description: "Display name of the channel."
+          - name: message_date
+            description: "Timestamp when the message was posted."
+          - name: message_text
+            description: "Full text of the message."
+          - name: has_media
+            description: "True if message has media."
+          - name: image_path
+            description: "Path on disk where the image was stored."
+          - name: views
+            description: "View count from Telegram."
+          - name: forwards
+            description: "Forward count from Telegram."
+          - name: raw_json
+            description: "Original JSON payload from scraper."
+
+models:
+  - name: stg_telegram_messages
+    description: "Cleaned Telegram messages with standardized types and derived flags."
+    columns:
+      - name: message_id
+        description: "Unique message id."
+        tests:
+          - not_null
+      - name: channel_name
+        description: "Channel display name."
+        tests:
+          - not_null
+      - name: channel_slug
+        description: "Lowercased channel name used for joining."
+      - name: message_timestamp
+        description: "Timestamp the message was sent."
+      - name: message_text
+        description: "Message body text."
+      - name: message_length
+        description: "Length of the message text in characters."
+      - name: view_count
+        description: "Number of views the message has."
+      - name: forward_count
+        description: "Number of forwards the message has."
+      - name: has_media
+        description: "Whether the message contains any media."
+      - name: has_image
+        description: "Whether the message has an image payload."
+      - name: image_path
+        description: "Filesystem path to downloaded image."
+
