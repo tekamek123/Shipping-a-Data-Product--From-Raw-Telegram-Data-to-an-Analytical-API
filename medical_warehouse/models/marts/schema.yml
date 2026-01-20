@@ -1,0 +1,93 @@
+version: 2
+
+models:
+  - name: dim_channels
+    description: "Channel dimension with posting stats and channel type."
+    columns:
+      - name: channel_key
+        description: "Surrogate key for channel (hash of channel slug)."
+        tests:
+          - unique
+          - not_null
+      - name: channel_name
+        description: "Display name of the channel."
+      - name: channel_slug
+        description: "Lowercased/trimmed channel identifier."
+      - name: channel_type
+        description: "High-level type (Pharmaceutical, Cosmetics, Medical, Unknown)."
+      - name: first_post_date
+        description: "Date of the first message observed for the channel."
+      - name: last_post_date
+        description: "Date of the most recent message observed."
+      - name: total_posts
+        description: "Count of messages observed."
+      - name: avg_views
+        description: "Average views across messages."
+
+  - name: dim_dates
+    description: "Date dimension for analytics."
+    columns:
+      - name: date_key
+        description: "YYYYMMDD integer key."
+        tests:
+          - unique
+          - not_null
+      - name: full_date
+        description: "Calendar date."
+      - name: day_of_week
+        description: "Day of week number (0=Sunday)."
+      - name: day_name
+        description: "Day name."
+      - name: week_of_year
+        description: "ISO week number."
+      - name: month
+        description: "Month number."
+      - name: month_name
+        description: "Month name."
+      - name: quarter
+        description: "Quarter number."
+      - name: year
+        description: "Year."
+      - name: is_weekend
+        description: "True when day is Saturday or Sunday."
+
+  - name: fct_messages
+    description: "Fact table with one row per Telegram message."
+    columns:
+      - name: message_key
+        description: "Surrogate key for message (channel + message id)."
+        tests:
+          - unique
+          - not_null
+      - name: message_id
+        description: "Telegram message id."
+        tests:
+          - not_null
+      - name: channel_key
+        description: "FK to dim_channels."
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_channels')
+              field: channel_key
+      - name: date_key
+        description: "FK to dim_dates."
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_dates')
+              field: date_key
+      - name: message_timestamp
+        description: "Timestamp message was sent."
+      - name: message_text
+        description: "Message text."
+      - name: message_length
+        description: "Character length of message text."
+      - name: view_count
+        description: "Views for the message."
+      - name: forward_count
+        description: "Forwards for the message."
+      - name: has_image
+        description: "True if message has an image."
+      - name: has_media
+        description: "True if message has any media."

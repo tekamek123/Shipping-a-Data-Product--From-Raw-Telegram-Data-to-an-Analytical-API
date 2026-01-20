@@ -1,18 +1,6 @@
-# Telegram API
-telethon>=1.34.0
-
-# Data processing
+dbt-postgres>=1.7.0
+psycopg2-binary>=2.9.9
 pandas>=2.0.0
-
-# Environment variables
 python-dotenv>=1.0.0
-
-# Date handling
 python-dateutil>=2.8.2
-
-# Image processing
-Pillow>=10.0.0
-
-# Utilities
-tqdm>=4.66.0
 
