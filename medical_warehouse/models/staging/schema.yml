@@ -5,8 +5,8 @@ sources:
     schema: raw
     description: "Raw Telegram data loaded from JSON scraper output."
     tables:
-      - name: telegram_messages
-        description: "Raw messages from Telegram channels with media info."
+      - name: yolo_detections
+        description: "YOLO object detection output (placeholder)."
         columns:
           - name: message_id
             description: "Telegram message id."
