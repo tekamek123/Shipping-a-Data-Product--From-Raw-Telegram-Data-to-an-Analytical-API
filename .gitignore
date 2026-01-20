@@ -69,6 +69,10 @@ secrets/
 *.pem
 *.key
 
+# Telegram session files
+*.session
+*.session-journal
+
 # OS
 Thumbs.db
 .DS_Store
