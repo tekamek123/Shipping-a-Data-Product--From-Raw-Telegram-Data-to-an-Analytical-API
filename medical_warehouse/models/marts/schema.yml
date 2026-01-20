@@ -91,4 +91,3 @@ models:
         description: "True if message has an image."
       - name: has_media
         description: "True if message has any media."
-

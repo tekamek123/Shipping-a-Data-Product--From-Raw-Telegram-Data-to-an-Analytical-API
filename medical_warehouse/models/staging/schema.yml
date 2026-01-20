@@ -57,4 +57,3 @@ models:
         description: "Whether the message has an image payload."
       - name: image_path
         description: "Filesystem path to downloaded image."
-

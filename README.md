@@ -126,11 +126,13 @@ medical-telegram-warehouse/
 ## Data Modeling & Transformation (Task 2)
 
 ### Prerequisites
+
 - PostgreSQL running and accessible
 - Populate `.env` from `env.template` with DB settings (`DB_HOST`, `DB_PORT`, `DB_NAME`, `DB_USER`, `DB_PASSWORD`, `DB_SCHEMA`)
 - Install dependencies: `pip install -r requirements.txt`
 
 ### Load Raw Data to PostgreSQL
+
 1. Ensure scraped JSON lives under `data/raw/telegram_messages/YYYY-MM-DD/*.json`.
 2. Run the loader to create `raw.telegram_messages` and insert data:
    ```bash
@@ -138,6 +140,7 @@ medical-telegram-warehouse/
    ```
 
 ### dbt Setup
+
 1. Copy `medical_warehouse/profiles-template.yml` to your dbt profiles location (e.g., `~/.dbt/profiles.yml`) and adjust credentials or rely on environment variables.
 2. From repo root, run:
    ```bash
@@ -148,11 +151,13 @@ medical-telegram-warehouse/
    ```
 
 ### Star Schema Design
+
 - **dim_channels**: one row per channel; surrogate `channel_key` from channel slug; includes type classification, first/last post dates, total posts, avg views.
 - **dim_dates**: canonical calendar dimension (YYYYMMDD keys) with day/week/month/quarter/year flags and weekend flag.
 - **fct_messages**: one row per message; links to `dim_channels` and `dim_dates`; measures include views, forwards, message length, and media flags.
 
 ### Data Quality Tests
+
 - Generic dbt tests: `unique`/`not_null` on keys; `relationships` on FKs.
 - Custom tests:
   - `assert_no_future_messages.sql`: prevents timestamps beyond current_date.

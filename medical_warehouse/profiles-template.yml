@@ -11,4 +11,3 @@ medical_warehouse:
       schema: "{{ env_var('DB_SCHEMA', 'raw') }}"
       threads: 4
       keepalives_idle: 0
-
