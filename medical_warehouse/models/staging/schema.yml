@@ -5,6 +5,27 @@ sources:
     schema: raw
     description: "Raw Telegram data loaded from JSON scraper output."
     tables:
+      - name: telegram_messages
+        description: "Raw Telegram messages loaded from JSON scraper output."
+        columns:
+          - name: message_id
+            description: "Telegram message id."
+          - name: channel_name
+            description: "Display name of the channel."
+          - name: message_date
+            description: "Timestamp when the message was posted."
+          - name: message_text
+            description: "Full text of the message."
+          - name: has_media
+            description: "True if message has media."
+          - name: image_path
+            description: "Path on disk where the image was stored."
+          - name: views
+            description: "View count from Telegram."
+          - name: forwards
+            description: "Forward count from Telegram."
+          - name: raw_json
+            description: "Original JSON payload from scraper."
       - name: yolo_detections
         description: "YOLO object detection output (placeholder)."
         columns:
